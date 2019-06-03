@@ -29,6 +29,14 @@
             padding: 10px;
 
         }
+
+        .center-container{
+
+            text-align: center;
+            padding: 10px;
+            margin: 10px;
+
+        }
     
     </style>
 </head>
@@ -38,6 +46,9 @@
         <div class="luz-semaforo" id="yellow"></div>
         <div class="luz-semaforo" id="green"></div>
     </div>
+    <div class="center-container">
+        <button onclick = "onClickCambiar()" >Cambiar color</button>
+    </div>
     <script>
 
         const cambiarColorLuzSemaforo = (id, prender) => {
@@ -45,12 +56,59 @@
             let color='';
             if(prender) color = id
             document.querySelector(`#${id}`).style.backgroundColor = color;
+            //document.getElementById(id)
         };
 
         cambiarColorLuzSemaforo('red', true);
         cambiarColorLuzSemaforo('yellow', true);
         cambiarColorLuzSemaforo('green', true);
-    
+        
+        
+
+        let status = 0;
+        const onClickCambiar = () => {
+            
+            //console.log(`Evento boton cambiar color ${status++}`);
+            console.log(status);    
+            //status&3; 
+            //operador ternario                
+            status >= 3 ? status = 0: status++;
+            switch(status) {
+
+                case 0:
+                    cambiarColorLuzSemaforo('red',true);
+                    cambiarColorLuzSemaforo('yellow',!true);
+                    cambiarColorLuzSemaforo('green',!true);
+                    break;
+                case 1:
+                    cambiarColorLuzSemaforo('red',true);
+                    cambiarColorLuzSemaforo('yellow',true);
+                    cambiarColorLuzSemaforo('green',!true);
+                    break;
+                case 2:
+                    cambiarColorLuzSemaforo('red',!true);
+                    cambiarColorLuzSemaforo('yellow',!true);
+                    cambiarColorLuzSemaforo('green',true);
+                    break;
+                case 3:
+                    cambiarColorLuzSemaforo('red',!true);
+                    cambiarColorLuzSemaforo('yellow',true);
+                    cambiarColorLuzSemaforo('green',!true);
+                    break;    
+                default:
+                    cambiarColorLuzSemaforo('red',!true);
+                    cambiarColorLuzSemaforo('yellow',!true);
+                    cambiarColorLuzSemaforo('green',!true);
+                    break;   
+                     
+            }
+        };
+
+        status++;
+        //setInterval(onClickCambiar, 2000);
+        
+        
+
     </script>
 </body>
 </html>
